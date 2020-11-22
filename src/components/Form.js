@@ -8,12 +8,21 @@ const Form = ({ setInputText, setTodos, todos, inputText, setStatus, filterHandl
   };
   const submitTodoHandler = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
+    if(!todos){
+      setTodos([
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ]);
+    }
+    else{
+      setTodos([
+        ...todos,
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ]);
+    }
     // clearing input box after adding 
     setInputText("");
+
+    console.log(todos);
   };
 
   const changeFilterHandler = (e) => {
