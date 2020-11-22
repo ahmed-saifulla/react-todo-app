@@ -50,8 +50,23 @@ function App() {
 
   // Run whenever change happens in todos and status data 
   useEffect(() => {
-    filterHandler();
-    saveToLocalTodos();
+    switch (status) {
+      case 'completed':
+        setFilteredTodos(todos.filter(todo => todo.completed === true));
+        break;
+      case 'uncompleted':
+        setFilteredTodos(todos.filter(todo => todo.completed === false));
+        break;
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+    if (localStorage.getItem('todos') === null) {
+      localStorage.setItem('todos', JSON.stringify([]))
+    }
+    else {
+      localStorage.setItem('todos', JSON.stringify(todos))
+    }
   }, [todos, status])
 
   return (
