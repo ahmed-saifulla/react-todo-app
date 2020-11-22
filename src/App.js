@@ -10,11 +10,12 @@ function App() {
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-  
+  // Run only once   
   useEffect(()=>{
     getLocalTodos();
   }, [])
 
+  // Run whenever change happens in todos and status data 
   useEffect(()=>{
     filterHandler();
     saveToLocalTodos();
@@ -36,7 +37,7 @@ function App() {
 
   const getLocalTodos = () =>{
     let localTodos = JSON.parse(localStorage.getItem('todos'))
-    setTodos(localTodos)
+    setTodos(localTodos);
   }
 
   const saveToLocalTodos = () =>{
@@ -47,6 +48,7 @@ function App() {
       localStorage.setItem('todos', JSON.stringify(todos))
     }
   }
+  
   return (
     <div className="App">
       <header>
