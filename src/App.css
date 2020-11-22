@@ -1,23 +1,43 @@
+* {
+  border: 0;
+}
+
+*:focus {
+  outline: 0;
+}
+
 body {
-  background-color: aqua;
+  background-color: #010001;
 }
 
 header {
   text-align: center;
 }
 
+h1 {
+  color: #f1f1f1;
+}
+
 .Form {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .Form .todo-input,
 .Form .todo-add-btn,
 .Form .select select {
-  margin: 10px;
+  margin: 3px;
   border: 0;
   border-radius: 6px;
   padding: 10px;
+  background-color: #201f20;
+  color: #c5c3c5;
+}
+
+.todo-add-btn {
+  color: black;
 }
 
 .todo-container {
@@ -33,14 +53,34 @@ header {
   width: 100%;
   justify-content: center;
   align-items: center;
+  padding: 6px;
 }
 
 .Todo {
-  background-color: white;
+  background-color: #201f20;
   display: flex;
   margin-bottom: 8px;
+  width: 270px;
+  border-radius: 6px;
+  color: #c5c3c5;
 }
 
 .todo-item {
-  width: 180px;
+  width: 210px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  border-radius: 8px 0 0 8px;
+}
+
+.done-item,
+.delete-item {
+  background-color: transparent;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: rgb(34, 201, 34);
+  background-color: #e1ffbd57;
 }

@@ -48,11 +48,11 @@ function App() {
       localStorage.setItem('todos', JSON.stringify(todos))
     }
   }
-  
+
   return (
     <div className="App">
       <header>
-        <h1>Dev's Todo App</h1>
+        <h1>Today's Tasks</h1>
       </header>
       <Form setInputText={setInputText} setTodos={setTodos} inputText={inputText} todos={todos} setStatus={setStatus} filterHandler={filterHandler}/>
       <TodoList todos={todos} setTodos={setTodos} filteredTodos={filteredTodos} />
