@@ -10,17 +10,6 @@ function App() {
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-  // Run only once   
-  useEffect(()=>{
-    getLocalTodos();
-  }, [])
-
-  // Run whenever change happens in todos and status data 
-  useEffect(()=>{
-    filterHandler();
-    saveToLocalTodos();
-  }, [todos, status])
-
   const filterHandler = () => {
     switch (status) {
       case 'completed':
@@ -35,31 +24,42 @@ function App() {
     }
   }
 
-  const getLocalTodos = () =>{
-    if(localStorage.getItem('todos') === null){
+  const getLocalTodos = () => {
+    if (localStorage.getItem('todos') === null) {
       localStorage.setItem('todos', JSON.stringify([]))
     }
-    else{
+    else {
       let localTodos = JSON.parse(localStorage.getItem('todos'))
       setTodos(localTodos);
     }
   }
 
-  const saveToLocalTodos = () =>{
-    if(localStorage.getItem('todos') === null){
+  const saveToLocalTodos = () => {
+    if (localStorage.getItem('todos') === null) {
       localStorage.setItem('todos', JSON.stringify([]))
     }
-    else{
+    else {
       localStorage.setItem('todos', JSON.stringify(todos))
     }
   }
+
+  // Run only once   
+  useEffect(() => {
+    getLocalTodos();
+  }, [])
+
+  // Run whenever change happens in todos and status data 
+  useEffect(() => {
+    filterHandler();
+    saveToLocalTodos();
+  }, [todos, status])
 
   return (
     <div className="App">
       <header>
         <h1>Today's Tasks</h1>
       </header>
-      <Form setInputText={setInputText} setTodos={setTodos} inputText={inputText} todos={todos} setStatus={setStatus} filterHandler={filterHandler}/>
+      <Form setInputText={setInputText} setTodos={setTodos} inputText={inputText} todos={todos} setStatus={setStatus} filterHandler={filterHandler} />
       <TodoList todos={todos} setTodos={setTodos} filteredTodos={filteredTodos} />
     </div>
   );
